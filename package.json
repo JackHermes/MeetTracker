@@ -18,7 +18,7 @@
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "test": "eslint ./*"
+    "test": "mocha"
   },
   "author": "Jordan M. Scholten",
   "license": "ISC"
