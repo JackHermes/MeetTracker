@@ -6,10 +6,12 @@ module.exports = function(config) {
         frameworks: ['mocha', 'chai'],
 
         files: [
-                'src/*.js'
+                'src/*.js',
+                'test/*.spec.js'
         ],
 
         reporters: ['progress'],
+
         port: 9876,
         colors: true,
         autoWatch: false,

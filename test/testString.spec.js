@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+var expect = chai.expect;
 var string = 'There and Back Again';
 
 describe('String', function() {
