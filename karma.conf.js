@@ -1,21 +1,30 @@
+var webpackConfig = require('./webpack.config.js');
+webpackConfig.devtool = 'inline-source-map';
+webpackConfig.entry = {};
+
 module.exports = function(config) {
     config.set({
-
+        browsers: ['Chrome'],
         basePath: '',
+
+        files: [
+          'test/tests.webpack.js'
+        ],
 
         frameworks: ['mocha', 'chai'],
 
-        files: [
-                'src/*.js',
-                'test/*.spec.js'
-        ],
+        preprocessors: {
+          'tests.webpack.js': ['webpack', 'sourcemap']
+        },
 
         reporters: ['progress'],
-
+        webpack: webpackConfig,
+        webpackServer: {
+          noInfo: true
+        },
         port: 9876,
         colors: true,
         autoWatch: false,
-        browsers: ['Chrome'],
         singleRun: true
 
     });
