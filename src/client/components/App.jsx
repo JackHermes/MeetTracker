@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Router, Route, Link, hashHistory} from 'react-router';
 
-ReactDOM.render (
-  <h1>Hey there, world!</h1>,
-  document.getElementById('app')
-)
+import Navbar from './Navbar.jsx';
+
+
+ReactDOM.render ((
+  <Router history={hashHistory}>
+    <Route path='/' component={Navbar} />
+  </Router>
+), document.getElementById('app'));
