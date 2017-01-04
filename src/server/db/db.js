@@ -7,14 +7,13 @@ var connection = mysql.createConnection({
   password: '1214'
 })
 
-connection.connect()
+
 connection.query('USE keepfit');
 
 app.get('/', function(req, res){
   connection.query('SELECT * from workouts', function (err, rows, fields) {
     if (err) throw err
-
-    console.log('The solution is: ', {workouts: rows})
+    res.send(rows)
   })
 });
 
