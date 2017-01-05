@@ -7,18 +7,19 @@ export default class ResultsTable extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      rows: [
+        [1, 'Data Soong', '11.02', 'TFA', 10],
+        [2, 'William T. Riker', '11.25', 'RotS', 8],
+        [3, 'Jeordi LaForge', '11.27', 'ESB', 6],
+        [4, 'Deeana Troi', '11.30', 'RotJ', 5],
+        [5, 'Jean-Luc Picard', '12.3', 'ANH', 4]
+      ]
+    };
   }
 
   render() {
-    const rows = [
-      [1, 'Data Soong', '11.02', 'TFA', 10],
-      [2, 'William T. Riker', '11.25', 'RotS', 8],
-      [3, 'Jeordi LaForge', '11.27', 'ESB', 6],
-      [4, 'Deeana Troi', '11.30', 'RotJ', 5],
-      [5, 'Jean-Luc Picard', '12.3', 'ANH', 4]
-      // and more
-    ];
+    const rows = this.state.rows;
 
     const TextCell = ({rowIndex, data, col}) => (
       <Cell>

@@ -1,4 +1,9 @@
-export default class Form extends React.Component {
+import React from 'react';
+import {Button, ControlLabel, FormControl, FormGroup, HelpBlock} from 'react-bootstrap';
+
+import Navbar from './Navbar.jsx';
+
+export default class EnterResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
@@ -21,6 +26,12 @@ export default class Form extends React.Component {
   render() {
     return (
     <div>
+      <Navbar />
+      <form onSubmit={this.handleSubmit}>
+        <FormGroup
+          controlId="formBasicText"
+          style={{width: '30%', paddingLeft: '5%'}}>
+          <ControlLabel>Enter Race Results</ControlLabel>
           <FormControl
             type="text"
             value={this.state.value}
@@ -39,6 +50,16 @@ export default class Form extends React.Component {
             placeholder="Time"
             onChange={this.handleChange}
           />
+          {/* <FormControl.Feedback /> */}
+          {/* <HelpBlock>...</HelpBlock> */}
+          <Button bsStyle="primary">Submit</Button>
+        </FormGroup>
+      {/*<label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" /> */}
+      </form>
     </div>
     );
   }

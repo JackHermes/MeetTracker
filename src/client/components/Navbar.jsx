@@ -23,7 +23,7 @@ const navbar = (
   </Navbar.Header>
   <Nav>
     <NavItem eventKey={1}>
-      <Link to='/input'>Enter Results</Link>
+      <Link to='/enterResults'>Enter Results</Link>
     </NavItem>
 
       <NavItem eventKey={2}>
