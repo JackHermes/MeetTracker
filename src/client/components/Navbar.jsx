@@ -16,12 +16,14 @@ const navbar = (
   <Navbar>
   <Navbar.Header>
     <Navbar.Brand>
-      <Link to="#">Meet Tracker</Link>
+      <Link to="/">Meet Tracker</Link>
     </Navbar.Brand>
   </Navbar.Header>
   <Nav>
     <NavItem eventKey={1} href="#">Enter Results</NavItem>
-    <NavItem eventKey={2} href="#">View Results</NavItem>
+    <Link to='/results'>
+      <NavItem eventKey={2}>View Results</NavItem>
+    </Link>
     <NavDropdown eventKey={3} title="Pages" id="basic-nav-dropdown">
       <MenuItem eventKey={3.1}>Coaches</MenuItem>
       <MenuItem eventKey={3.2}>Athletes</MenuItem>
