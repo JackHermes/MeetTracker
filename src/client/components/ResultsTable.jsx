@@ -2,7 +2,6 @@ import React from 'react';
 import {Table, Column, Cell} from 'fixed-data-table';
 
 import Navbar from './Navbar.jsx';
-// Table data as a list of array.
 
 export default class ResultsTable extends React.Component {
   constructor(props) {
@@ -11,35 +10,16 @@ export default class ResultsTable extends React.Component {
     this.state = {};
   }
 
-// const resultsCell = () => (
-//   ({rowIndex}) => (
-//     <Cell>{rows[rowIndex][2]}</Cell>
-// )
-// );
-
-// Render your table
   render() {
     const rows = [
-      [1, 'Anon', '11.22', 'WSU', 10],
-      [2, 'Jordan Scholten', '11.25', 'WU', 8],
-      [3, 'Anon', '11.27', 'UW', 6],
-      [4, 'Kyle Fremd', '11.30', 'CWU', 5],
-      [5, 'Anon', '12.3', 'SASS', 4]
+      [1, 'Data Soong', '11.02', 'TFA', 10],
+      [2, 'William T. Riker', '11.25', 'RotS', 8],
+      [3, 'Jeordi LaForge', '11.27', 'ESB', 6],
+      [4, 'Deeana Troi', '11.30', 'RotJ', 5],
+      [5, 'Jean-Luc Picard', '12.3', 'ANH', 4]
       // and more
     ];
-    const MyColumn = (
-      <Column
-        cell={({rowIndex, width, height}) => (
-          <Cell /*
-            width={width}
-            height={height}
-            className="my-class"*/>
-            Cell number: {rowIndex}
-           </Cell>
-        )}
-        width={300}
-      />
-    );
+
     const TextCell = ({rowIndex, data, col}) => (
       <Cell>
         {data[rowIndex][col]}

@@ -30,6 +30,10 @@ const navbar = (
         <Link to='/results'>View Results</Link>
       </NavItem>
 
+      {/* <NavItem eventKey={2}>
+        <Link to='/bootleg'>View Boots</Link>
+      </NavItem> */}
+
     <NavDropdown eventKey={3} title="Pages" id="basic-nav-dropdown">
       <MenuItem eventKey={3.1}>Coaches</MenuItem>
       <MenuItem eventKey={3.2}>Athletes</MenuItem>

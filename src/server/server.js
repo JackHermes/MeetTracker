@@ -19,9 +19,9 @@ app.get('/workouts', function(req, res){
   })
 });
 
-app.get('/', function (req, res) {
-  res.send('yyy');
-})
+// app.get('/', function (req, res) {
+//   res.send('yyy');
+// })
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, 'dist/index.html'))
 })
