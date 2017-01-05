@@ -1,3 +1,6 @@
+import React from 'react';
+import { FormControl} from 'react-bootstrap';
+
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -22,12 +25,12 @@ export default class Form extends React.Component {
     return (
     <div>
           <FormControl
-            type="text"
+            type={this.props.type}
             value={this.state.value}
-            placeholder="Event"
+            placeholder={this.props.placeholder}
             onChange={this.handleChange}
           />
-          <FormControl
+          {/* <FormControl
             type="text"
             value={this.state.value}
             placeholder="Athlete"
@@ -38,7 +41,7 @@ export default class Form extends React.Component {
             value={this.state.value}
             placeholder="Time"
             onChange={this.handleChange}
-          />
+          /> */}
     </div>
     );
   }
