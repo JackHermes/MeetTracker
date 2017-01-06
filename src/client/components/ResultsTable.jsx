@@ -36,7 +36,8 @@ export default class ResultsTable extends React.Component {
           rowsCount={rows.length}
           width={1000}
           height={300}
-          headerHeight={50}>
+          headerHeight={50}
+        >
           <Column
             header={<Cell>Place</Cell>}
             cell={<TextCell data={rows} col={0}/>}
