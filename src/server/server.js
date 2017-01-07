@@ -11,20 +11,23 @@ var connection = mysql.createConnection({
 app.use(express.static(path.join(__dirname, '../../dist')));
 
 // Communicate with db
-connection.query('USE keepfit');
-app.get('/workouts', function(req, res){
-  connection.query('SELECT * from workouts', function (err, rows, fields) {
+connection.query('USE races');
+app.get('/100m', function(req, res){
+  connection.query('SELECT * from 100m', function (err, rows, fields) {
     if (err) throw err
     res.send(rows)
-  })
+  });
 });
 
-// app.get('/', function (req, res) {
-//   res.send('yyy');
-// })
 app.get('*', function(req, res) {
-  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
+  res.sendFile(path.resolve(__dirname, 'dist/index.html'));
 })
+
+app.post('/100m', function(req, res) {
+  // connection.query('INSERT into 100m values ')
+  console.log(req);
+  res.send('POST for 100m received.')
+});
 
 app.listen(1337, function () {
   console.log('Listening on port 1337.');
