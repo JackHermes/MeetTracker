@@ -13,43 +13,36 @@ export default class ResultsTable extends React.Component {
     };
     this.handleGET = this.handleGET.bind(this);
     this.handlePOST = this.handlePOST.bind(this);
-    // this.setState = this.setState.bind(this);
   }
-
-[
-  {
-    athlete: "Data Soong",
-    points: 10,
-    resultsid: 1,
-    school: "TFA",
-    time: 11.02
-  }
-]
 
   handlePOST(event) {
     var request = new Request('/100m', {
-      method: 'POST',
-      body: "TEST"
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        hey: 'you',
+        yo: 'me'
+      })
     });
     console.log("Click!");
-    fetch(request).then(function(response) {
-      console.log(response);
-    }).catch(function(err) {
+    fetch(request).then((response) => {
+      console.log(response); // not sure why 'POST for 100m received.' not part of response
+    }).catch((err) => {
       console.log(err);
     })
   }
   handleGET(event) {
-    console.log("Click.");
-    fetch('/100m').then(function(response) {
+    var that = this;
+    fetch('/100m').then((response) => {
       return response.json();
-    }).then(function(raceResults){
-      console.log(raceResults);
-      this.setState({rows: raceResults}); // 'this' currently undefined...
-    }).catch(function(err) {
-      console.log(err);
+    }).then((raceResults) => {
+      that.setState({rows: raceResults});
+    }).catch((err) => {
+      console.error(err);
     })
-    // this.setState({event: '', athlete: '', time: '', school: ''})
-    // alert('An event was submitted: ' + this.state.value);
     // event.preventDefault();
   }
 
