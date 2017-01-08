@@ -13,26 +13,7 @@ export default class ResultsTable extends React.Component {
     };
     this.handleGET = this.handleGET.bind(this);
     this.handlePOST = this.handlePOST.bind(this);
-  }
-
-  handlePOST(event) {
-    var request = new Request('/100m', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        hey: 'you',
-        yo: 'me'
-      })
-    });
-    console.log("Click!");
-    fetch(request).then((response) => {
-      console.log(response); // not sure why 'POST for 100m received.' not part of response
-    }).catch((err) => {
-      console.log(err);
-    })
+    this.truncate = this.truncate.bind(this);
   }
   handleGET(event) {
     var that = this;
@@ -44,6 +25,57 @@ export default class ResultsTable extends React.Component {
       console.error(err);
     })
     // event.preventDefault();
+  }
+
+  handlePOST(event) {
+    let request = new Request('/100m', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        athlete: 'Worf (IR)',
+        time: 12.00,
+        school: 'TPM',
+        points: 3
+      })
+    });
+    console.log("Click!");
+    fetch(request).then((response) => {
+      console.log(response); // not sure why 'POST for 100m received.' not part of response when I res.send it
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+  seed(event) {
+    let request = new Request('/seed', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    fetch(request);
+  }
+
+  truncate(event) {
+    let request = new Request('/100m', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        delete: true
+      })
+    });
+    fetch(request).then((response) => {
+      console.log(response);
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   render() {
@@ -71,12 +103,16 @@ export default class ResultsTable extends React.Component {
         <Navbar />
         <Button bsStyle="success" onClick={this.handleGET}>GET</Button>
         <Button bsStyle="primary" onClick={this.handlePOST}>POST</Button>
+        <Button bsStyle="warning"
+          onClick={this.truncate}>Remove Data</Button>
+        <Button bsStyle="info"
+          onClick={this.seed}>Seed Data</Button>
         <h2>100m Dash</h2>
         <Table
           rowHeight={50}
           rowsCount={rows.length}
           width={1000}
-          height={300}
+          height={500}
           headerHeight={50}
         >
           <Column
