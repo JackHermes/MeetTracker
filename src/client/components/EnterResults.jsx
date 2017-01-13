@@ -53,7 +53,7 @@ export default class EnterResults extends React.Component {
           />
           <Form
             type="text"
-            placeholder="Time"
+            placeholder="Performance"
             value={this.state.time}
             handleChange={this.handleChange}
           />

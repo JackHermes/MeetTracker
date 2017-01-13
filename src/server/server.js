@@ -14,10 +14,32 @@ app.use(express.static(path.join(__dirname, '../../dist')));
 app.use(bodyParser.json());
 // Communicate with db
 connection.query('USE meet');
-app.get('/athletes', function(req, res){
-  connection.query('SELECT * from athletes', function (err, rows, fields) {
+
+app.get('/results', function(req, res){
+
+  var performance, points, place, athlete, team;
+
+  connection.query('SELECT * from EventExample', function (err, rows, fields) {
     if (err) throw err
-    res.send(rows)
+    performance = rows.map(function(item) {
+      return item.performance;
+    });
+    points = rows.map(function(item) {
+      return item.points_won;
+    })
+    place = rows.map(function(item) {
+      return item.place;
+    })
+  });
+  connection.query('select athletes.athlete_name, teams.team_name from athletes inner join teams on athletes.team=teams.idTeams order by athletes.idAthletes;', function(err, rows, fields){
+    athlete = rows.map(function(item) {
+      return item.athlete_name;
+    });
+    team = rows.map(function(item) {
+      return item.team_name;
+    });
+    console.log(performance, points, place, athlete, team)
+    res.send([place, athlete, performance, team, points])
   });
 });
 

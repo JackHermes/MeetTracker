@@ -9,7 +9,8 @@ export default class ResultsTable extends React.Component {
     super(props);
 
     this.state = {
-      rows: []
+      title: '',
+      rows: ['']
     };
     this.handleGET = this.handleGET.bind(this);
     this.handlePOST = this.handlePOST.bind(this);
@@ -17,9 +18,11 @@ export default class ResultsTable extends React.Component {
   }
   handleGET(event) {
     var that = this;
-    fetch('/100m').then((response) => {
+    fetch('/results').then((response) => {
       return response.json();
     }).then((raceResults) => {
+      console.log(raceResults)
+      that.setState({title: "Javelin"});
       that.setState({rows: raceResults});
     }).catch((err) => {
       console.error(err);
@@ -94,51 +97,51 @@ export default class ResultsTable extends React.Component {
 
     const TextCell = ({rowIndex, data, col}) => (
       <Cell>
-        {data[rowIndex][col]}
+        {data[col][rowIndex]}
       </Cell>
     );
 
     return (
       <div>
         <Navbar />
-        <Button bsStyle="success" onClick={this.handleGET}>GET</Button>
-        <Button bsStyle="primary" onClick={this.handlePOST}>POST</Button>
-        <Button bsStyle="warning"
-          onClick={this.truncate}>Remove Data</Button>
+        <Button bsStyle="default" onClick={this.handleGET}>Results</Button>
+        {/* <Button bsStyle="primary" onClick={this.handlePOST}>POST</Button> */}
+        {/* <Button bsStyle="warning"
+          onClick={this.truncate}>Remove Events</Button>
         <Button bsStyle="info"
-          onClick={this.seed}>Seed Data</Button>
-        <h2>100m Dash</h2>
+          onClick={this.seed}>Seed Data</Button> */}
+        <h2>{this.state.title}</h2>
         <Table
           rowHeight={50}
-          rowsCount={rows.length}
+          rowsCount={rows[0].length}
           width={1000}
-          height={500}
+          height={1000}
           headerHeight={50}
         >
           <Column
             header={<Cell>Place</Cell>}
-            cell={<TextCell data={rows} col={'resultsid'}/>}
+            cell={<TextCell  data={rows} col={'0'}/>}
             width={200}
           />
           <Column
             header={<Cell>Athlete</Cell>}
-            cell={<TextCell data={rows} col={'athlete'}/>}
+            cell={<TextCell data={rows} col={'1'}/>}
             width={200}
           />
           {/* <MyColumn rowIndex={3}/> */}
           <Column
-            header={<Cell>Time</Cell>}
-            cell={<TextCell data={rows} col={'time'}/>}
+            header={<Cell>Performance</Cell>}
+            cell={<TextCell data={rows} col={'2'}/>}
             width={200}
           />
           <Column
             header={<Cell>School</Cell>}
-            cell={<TextCell data={rows} col={'school'}/>}
+            cell={<TextCell data={rows} col={'3'}/>}
             width={200}
           />
           <Column
             header={<Cell>Points</Cell>}
-            cell={<TextCell data={rows} col={'points'}/>}
+            cell={<TextCell data={rows} col={'4'}/>}
             width={200}
           />
         </Table>

@@ -20,10 +20,10 @@ USE `Meet` ;
 -- -----------------------------------------------------
 -- Table `Meet`.`Team Total Points`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Meet`.`Team Total Points` (
-  `idTeam Total Points` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `Meet`.`Team_Total_Points` (
+  `idTeam_Total_Points` INT NOT NULL AUTO_INCREMENT,
   `points` FLOAT NULL,
-  PRIMARY KEY (`idTeam Total Points`))
+  PRIMARY KEY (`idTeam_Total_Points`))
 ENGINE = InnoDB;
 
 
@@ -35,10 +35,10 @@ CREATE TABLE IF NOT EXISTS `Meet`.`Teams` (
   `team_name` VARCHAR(45) NULL,
   `team_points` INT NULL,
   PRIMARY KEY (`idTeams`),
-  INDEX `fk_Teams_Team Total Points1_idx` (`team_points` ASC),
-  CONSTRAINT `fk_Teams_Team Total Points`
+  INDEX `fk_Teams_Team_Total_Points1_idx` (`team_points` ASC),
+  CONSTRAINT `fk_Teams_Team_Total_Points`
     FOREIGN KEY (`team_points`)
-    REFERENCES `Meet`.`Team Total Points` (`idTeam Total Points`)
+    REFERENCES `Meet`.`Team_Total_Points` (`idTeam_Total_Points`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -47,10 +47,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Meet`.`Athlete Total Points`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Meet`.`Athlete Total Points` (
-  `idAthlete Total Points` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `Meet`.`Athlete_Total_Points` (
+  `idAthlete_Total_Points` INT NOT NULL AUTO_INCREMENT,
   `points` FLOAT NULL,
-  PRIMARY KEY (`idAthlete Total Points`))
+  PRIMARY KEY (`idAthlete_Total_Points`))
 ENGINE = InnoDB;
 
 
@@ -70,9 +70,9 @@ CREATE TABLE IF NOT EXISTS `Meet`.`Athletes` (
     REFERENCES `Meet`.`Teams` (`idTeams`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Athletes_Athlete Total Points`
+  CONSTRAINT `fk_Athletes_Athlete_Total_Points`
     FOREIGN KEY (`athlete_points`)
-    REFERENCES `Meet`.`Athlete Total Points` (`idAthlete Total Points`)
+    REFERENCES `Meet`.`Athlete_Total_Points` (`idAthlete_Total_Points`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

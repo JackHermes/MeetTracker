@@ -12,11 +12,13 @@ export default class ResultsTable extends React.Component {
 
 render() {
   const rows = [
-    [1, 'Data Soong', '11.02', 'HRR', 10],
-    [2, 'William T. Riker', '11.25', 'WU', 8],
-    [3, 'Jeordi LaForge', '11.27', 'TDK', 6],
-    [4, 'Deeana Troi', '11.30', 'CWU', 5],
-    [5, 'Jean-Luc Picard', '12.3', 'MCU', 4]
+    [5, 'Jean-Luc Picard', '12.3', 'Erebor', 4],
+    [1, 'Data Soong', '11.02', 'Greenwood', 10],
+    [4, 'Deeana Troi', '11.30', 'Minas Tirith', 5],
+    [3, 'Jeordi LaForge', '11.27', 'Rivendell', 6],
+    [5, 'Jean-Luc Picard', '12.3', 'Shire', 9],
+    [2, 'William T. Riker', '11.25', 'Valinor', 8]
+
   ];
   const tableStyle = () => {
     return {
@@ -36,7 +38,7 @@ render() {
         rowHeight={50}
         rowsCount={rows.length}
         width={400}
-        height={300}
+        height={350}
         headerHeight={50}>
         <Column
           header={<Cell>School</Cell>}
