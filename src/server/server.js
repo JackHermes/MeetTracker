@@ -9,17 +9,16 @@ var connection = mysql.createConnection({
   user: 'root',
   password: '1214'
 })
-// app.use(express.static(path.join(__dirname, '../../src')));
 app.use(express.static(path.join(__dirname, '../../dist')));
 app.use(bodyParser.json());
 // Communicate with db
-connection.query('USE meet');
+connection.query('USE MeetTracker');
 
 app.get('/results', function(req, res){
 
   var performance, points, place, athlete, team;
 
-  connection.query('SELECT * from EventExample', function (err, rows, fields) {
+  connection.query('SELECT * from Events', function (err, rows, fields) {
     if (err) throw err
     performance = rows.map(function(item) {
       return item.performance;
@@ -31,7 +30,7 @@ app.get('/results', function(req, res){
       return item.place;
     })
   });
-  connection.query('select athletes.athlete_name, teams.team_name from athletes inner join teams on athletes.team=teams.idTeams order by athletes.idAthletes;', function(err, rows, fields){
+  connection.query('select athletes.name, teams.name from athletes inner join teams on athletes.athlete_team=teams.team_id order by athletes.athlete_id;', function(err, rows, fields){
     athlete = rows.map(function(item) {
       return item.athlete_name;
     });

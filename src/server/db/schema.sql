@@ -1,8 +1,9 @@
--- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+DROP DATABASE IF EXISTS `MeetTracker`;
 
 -- -----------------------------------------------------
 -- Schema MeetTracker
@@ -56,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `MeetTracker`.`Results` (
   PRIMARY KEY (`result_id`),
   CONSTRAINT `fk_result_athlete`
     FOREIGN KEY (`result_athlete`)
-    REFERENCES `MeetTracker`.`Athlete` (`athlete_id`)
+    REFERENCES `MeetTracker`.`Athletes` (`athlete_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_result_team`
@@ -96,7 +97,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `MeetTracker`.`Events` (
   `event_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(40) NOT NULL,
-  `units` VARCHAR(10) NOT NULL,
+  `units` VARCHAR(10) NULL,
   `start_time` VARCHAR(25) NULL,
   PRIMARY KEY (`event_id`))
 ENGINE = InnoDB;
