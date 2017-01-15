@@ -16,52 +16,32 @@ connection.query('USE MeetTracker');
 
 app.get('/results', function(req, res){
 
-  var performance, points, place, athlete, team;
+  connection.query('select results.performance, results.place, results.points, results.wind, results.heat_number, athletes.athlete, teams.name, events.event, events.units from results inner join athletes on results.result_athlete=athletes.athlete_id inner join teams on results.result_team=teams.team_id inner join events on results.result_event=events.event_id', function(err, results, fields){
+      if(err) throw err
+      console.log(results);
+      res.send(results)
+    });
+});
 
-  connection.query('SELECT * from Events', function (err, rows, fields) {
-    if (err) throw err
-    performance = rows.map(function(item) {
-      return item.performance;
-    });
-    points = rows.map(function(item) {
-      return item.points_won;
-    })
-    place = rows.map(function(item) {
-      return item.place;
-    })
-  });
-  connection.query('select athletes.name, teams.name from athletes inner join teams on athletes.athlete_team=teams.team_id order by athletes.athlete_id;', function(err, rows, fields){
-    athlete = rows.map(function(item) {
-      return item.athlete_name;
-    });
-    team = rows.map(function(item) {
-      return item.team_name;
-    });
-    console.log(performance, points, place, athlete, team)
-    res.send([place, athlete, performance, team, points])
-  });
+// app.post('/seed', function(req, res) {
+//   connection.query(query);
+// })
+
+app.post('/add/athlete', function(req, res) {
+  console.log("Received:", req.body);
+  let athleteName = req.body.athlete;
+  let athleteTeam = req.body.team;
+  let query = `INSERT into Athletes (athlete, athlete_team) VALUES (?, (SELECT team_id from teams where name = (?) ))`;
+
+  connection.query(query, [athleteName, athleteTeam]);
+
+  res.send('POST for athlete received.');
+  // res.json(req.body);
 });
 
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, 'dist/index.html'));
 })
-
-app.post('/seed', function(req, res) {
-  connection.query(query);
-})
-
-app.post('/athlete', function(req, res) {
-  console.log(req.body);
-  let data = req.body;
-  let query = `INSERT into Athletes (athlete_name, team, athlete_points) VALUES (?,?,?);`;
-
-  connection.query(query, ['jack', 2, 400]);
-
-  console.log(data)
-  res.send('POST for 100m received.');
-  // res.json(req.body);
-});
-
 app.listen(1337, function () {
   console.log('Listening on port 1337.');
 });

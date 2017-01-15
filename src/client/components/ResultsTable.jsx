@@ -31,22 +31,23 @@ export default class ResultsTable extends React.Component {
   }
 
   handlePOST(event) {
-    let request = new Request('/100m', {
+    let body = JSON.stringify({
+      athlete: 'Jane',
+      time: 12.00,
+      team: 'Shire',
+      points: 3
+    })
+    let request = {
       method: 'post',
-      headers: {
+      headers: new Headers({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        athlete: 'Worf (IR)',
-        time: 12.00,
-        school: 'TPM',
-        points: 3
-      })
-    });
+      }),
+      body: body
+    };
     console.log("Click!");
-    fetch(request).then((response) => {
-      console.log(response); // not sure why 'POST for 100m received.' not part of response when I res.send it
+    fetch('/add/athlete', request).then((response) => {
+      console.log("Responsify---", response); // not sure why 'POST for 100m received.' not part of response when I res.send it
     }).catch((err) => {
       console.log(err);
     })
@@ -97,7 +98,7 @@ export default class ResultsTable extends React.Component {
 
     const TextCell = ({rowIndex, data, col}) => (
       <Cell>
-        {data[col][rowIndex]}
+        {data[rowIndex][col]}
       </Cell>
     );
 
@@ -105,7 +106,7 @@ export default class ResultsTable extends React.Component {
       <div>
         <Navbar />
         <Button bsStyle="default" onClick={this.handleGET}>Results</Button>
-        {/* <Button bsStyle="primary" onClick={this.handlePOST}>POST</Button> */}
+        <Button bsStyle="primary" onClick={this.handlePOST}>POST</Button>
         {/* <Button bsStyle="warning"
           onClick={this.truncate}>Remove Events</Button>
         <Button bsStyle="info"
@@ -113,35 +114,35 @@ export default class ResultsTable extends React.Component {
         <h2>{this.state.title}</h2>
         <Table
           rowHeight={50}
-          rowsCount={rows[0].length}
+          rowsCount={rows.length}
           width={1000}
           height={1000}
           headerHeight={50}
         >
           <Column
             header={<Cell>Place</Cell>}
-            cell={<TextCell  data={rows} col={'0'}/>}
+            cell={<TextCell  data={rows} col={'place'}/>}
             width={200}
           />
           <Column
             header={<Cell>Athlete</Cell>}
-            cell={<TextCell data={rows} col={'1'}/>}
+            cell={<TextCell data={rows} col={'athlete'}/>}
             width={200}
           />
           {/* <MyColumn rowIndex={3}/> */}
           <Column
             header={<Cell>Performance</Cell>}
-            cell={<TextCell data={rows} col={'2'}/>}
+            cell={<TextCell data={rows} col={'performance'}/>}
             width={200}
           />
           <Column
             header={<Cell>School</Cell>}
-            cell={<TextCell data={rows} col={'3'}/>}
+            cell={<TextCell data={rows} col={'name'}/>}
             width={200}
           />
           <Column
             header={<Cell>Points</Cell>}
-            cell={<TextCell data={rows} col={'4'}/>}
+            cell={<TextCell data={rows} col={'points'}/>}
             width={200}
           />
         </Table>

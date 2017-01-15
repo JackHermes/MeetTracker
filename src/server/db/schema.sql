@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 -- add JOIN table to teams, meets
 CREATE TABLE IF NOT EXISTS `MeetTracker`.`Athletes` (
   `athlete_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(50) NOT NULL,
+  `athlete` VARCHAR(50) NOT NULL,
   `athlete_team` INT NULL,
   PRIMARY KEY (`athlete_id`),
   CONSTRAINT `fk_athlete_team`
@@ -96,7 +96,7 @@ ENGINE = InnoDB;
 -- add JOIN to MEETS
 CREATE TABLE IF NOT EXISTS `MeetTracker`.`Events` (
   `event_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(40) NOT NULL,
+  `event` VARCHAR(40) NOT NULL,
   `units` VARCHAR(10) NULL,
   `start_time` VARCHAR(25) NULL,
   PRIMARY KEY (`event_id`))
