@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl} from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -9,9 +9,9 @@ export default class Form extends React.Component {
     // this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  //
   // handleChange(event) {
-  //   console.log(event.target)
+  //   console.log("Form",event.target)
   //   this.setState({value: event.target.value});
   // }
 
@@ -27,7 +27,7 @@ export default class Form extends React.Component {
             type={this.props.type}
             value={this.props.value}
             placeholder={this.props.placeholder}
-            onChange={this.props.handleChange}
+            // onChange={this.props.handleChange}
           />
           {/* <FormControl
             type="text"

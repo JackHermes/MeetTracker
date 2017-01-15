@@ -8,22 +8,23 @@ export default class EnterResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: '',
-      athlete: '',
-      time: ''
+      Event: '',
+      Athlete: '',
+      Time: '',
+      School: ''
     };
 
-    // this.handleFieldChange = this.handleFieldChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    console.log(event.target)
-    this.setState({event: event.target.value});
-  }
+  // handleChange(event) {
+  //   console.log(event.target.placeholder)
+  //   this.setState({[event.target.placeholder]: event.target.value});
+  // }
 
   handleSubmit(event) {
-    console.log(event);
+    console.log("EnterResults", event);
     this.setState({event: '', athlete: '', time: '', school: ''})
     // alert('An event was submitted: ' + this.state.value);
     event.preventDefault();
@@ -41,8 +42,8 @@ export default class EnterResults extends React.Component {
           <Form
             type="text"
             placeholder="Event"
-            value={this.state.event}
-            handleChange={this.handleChange}
+            // value={this.state.event}
+            // handleChange={this.handleChange}
             // onChange={this.handleFieldChange}
           />
           <Form
@@ -60,14 +61,14 @@ export default class EnterResults extends React.Component {
           <Form
             type="text"
             placeholder="School"
-            value={this.state.event}
+            value={this.state.school}
             handleChange={this.handleChange}
             // onChange={this.handleFieldChange}
           />
           {/* <FormControl.Feedback /> */}
           {/* <HelpBlock>...</HelpBlock> */}
           <Button
-            bsStyle="primary"
+            bsStyle="Submit"
             onClick={this.handleSubmit}>Submit</Button>
         </FormGroup>
       {/*<label>

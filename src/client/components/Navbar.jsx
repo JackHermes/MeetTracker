@@ -37,7 +37,9 @@ const navbar = (
     <NavDropdown eventKey={3} title="Pages" id="basic-nav-dropdown">
       <MenuItem eventKey={3.1}>Coaches</MenuItem>
       <MenuItem eventKey={3.2}>Athletes</MenuItem>
-      <MenuItem eventKey={3.3}>Teams</MenuItem>
+      <MenuItem eventKey={3.3}>
+        <Link to='/teams'>Teams</Link>
+      </MenuItem>
       <MenuItem divider />
       <MenuItem eventKey={3.3}>About Meet Tracker</MenuItem>
     </NavDropdown>

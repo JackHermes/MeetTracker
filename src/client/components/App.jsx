@@ -7,6 +7,7 @@ import EnterResults from './EnterResults.jsx';
 import Home from './Home.jsx';
 import Navbar from './Navbar.jsx';
 import ResultsTable from './ResultsTable.jsx';
+import Teams from './Teams.jsx';
 
 ReactDOM.render ((
   <Router history={hashHistory}>
@@ -14,5 +15,6 @@ ReactDOM.render ((
     {/* <Route path='/bootleg' component={BootstrapTable} /> */}
     <Route path='/results' component={ResultsTable} />
     <Route path='/enterResults' component={EnterResults} />
+    <Route path='/teams' component={Teams} />
   </Router>
 ), document.getElementById('app'));
