@@ -3,3 +3,7 @@
 - karma cli installed globally
 - grunt-cli installed globally
 - webpack-dev-server installed globally
+
+- use nodemon for dev
+- mysql installed
+  - install db schema
