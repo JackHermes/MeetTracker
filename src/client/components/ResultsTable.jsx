@@ -14,7 +14,7 @@ export default class ResultsTable extends React.Component {
     };
     this.handleGET = this.handleGET.bind(this);
     this.handlePOST = this.handlePOST.bind(this);
-    this.truncate = this.truncate.bind(this);
+    // this.truncate = this.truncate.bind(this);
   }
   handleGET(event) {
     var that = this;
@@ -45,42 +45,41 @@ export default class ResultsTable extends React.Component {
       }),
       body: body
     };
-    console.log("Click!");
+
     fetch('/add/athlete', request).then((response) => {
       console.log("Responsify---", response); // not sure why 'POST for 100m received.' not part of response when I res.send it
-    }).catch((err) => {
-      console.log(err);
-    })
-  }
-  seed(event) {
-    let request = new Request('/seed', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    });
-
-    fetch(request);
+    }).catch((err) => {console.log(err);})
   }
 
-  truncate(event) {
-    let request = new Request('/100m', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        delete: true
-      })
-    });
-    fetch(request).then((response) => {
-      console.log(response);
-    }).catch((err) => {
-      console.error(err);
-    });
-  }
+  // seed(event) {
+  //   let request = new Request('/seed', {
+  //     method: 'post',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     }
+  //   });
+  //
+  //   fetch(request);
+  // }
+
+  // truncate(event) {
+  //   let request = new Request('/100m', {
+  //     method: 'post',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       delete: true
+  //     })
+  //   });
+  //   fetch(request).then((response) => {
+  //     console.log(response);
+  //   }).catch((err) => {
+  //     console.error(err);
+  //   });
+  // }
 
   render() {
   const buttonGroupInstance = (

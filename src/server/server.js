@@ -28,12 +28,12 @@ app.get('/results', function(req, res){
 // })
 
 app.post('/add/athlete', function(req, res) {
-  console.log("Received:", req.body);
+  console.log("Received:",req.body);
   let athleteName = req.body.athlete;
   let athleteTeam = req.body.team;
   let query = `INSERT into Athletes (athlete, athlete_team) VALUES (?, (SELECT team_id from teams where name = (?) ))`;
 
-  connection.query(query, [athleteName, athleteTeam]);
+  // connection.query(query, [athleteName, athleteTeam]);
 
   res.send('POST for athlete received.');
   // res.json(req.body);

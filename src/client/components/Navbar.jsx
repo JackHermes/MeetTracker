@@ -2,18 +2,6 @@ import React from 'react';
 import {ButtonGroup, DropdownButton, MenuItem, Button, Nav, Navbar, NavItem, NavDropdown} from 'react-bootstrap';
 import {Link} from 'react-router';
 
-
-
-const buttonGroupInstance = (
-  <ButtonGroup>
-    <DropdownButton bsStyle="success" title="Dropdown">
-      <MenuItem key="1">Dropdown link</MenuItem>
-      <MenuItem key="2">Dropdown link</MenuItem>
-    </DropdownButton>
-    <Button bsStyle="info">Middle</Button>
-    <Button bsStyle="info">Right</Button>
-  </ButtonGroup>
-);
 const navbar = (
   <Navbar>
   <Navbar.Header>

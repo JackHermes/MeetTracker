@@ -27,7 +27,7 @@ export default class Form extends React.Component {
             type={this.props.type}
             value={this.props.value}
             placeholder={this.props.placeholder}
-            // onChange={this.props.handleChange}
+            onChange={this.props.onChange}
           />
           {/* <FormControl
             type="text"
