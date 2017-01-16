@@ -16,7 +16,7 @@ connection.query('USE MeetTracker');
 
 app.get('/results', function(req, res){
 
-  connection.query('select results.performance, results.place, results.points, results.wind, results.heat_number, athletes.athlete, teams.name, events.event, events.units from results inner join athletes on results.result_athlete=athletes.athlete_id inner join teams on results.result_team=teams.team_id inner join events on results.result_event=events.event_id', function(err, results, fields){
+  connection.query('select Results.performance, Results.place, Results.points, Results.wind, Results.heat_number, Athletes.athlete, Teams.name, Events.event, Events.units from Results inner join Athletes on Results.result_athlete=Athletes.athlete_id inner join Teams on Results.result_team=Teams.team_id inner join Events on Results.result_event=Events.event_id', function(err, results, fields){
       if(err) throw err
       console.log(results);
       res.send(results)
@@ -29,9 +29,9 @@ app.get('/results', function(req, res){
 
 app.post('/add/athlete', function(req, res) {
   console.log("Received:",req.body);
-  let athleteName = req.body.Athlete;
-  let athleteTeam = req.body.Team;
-  let query = `INSERT into Athletes (athlete, athlete_team) VALUES (?, (SELECT team_id from teams where name = (?) ))`;
+  var athleteName = req.body.Athlete;
+  var athleteTeam = req.body.Team;
+  var query = `INSERT into Athletes (athlete, athlete_team) VALUES (?, (SELECT team_id from teams where name = (?) ))`;
 
   connection.query(query, [athleteName, athleteTeam]);
 
@@ -41,8 +41,8 @@ app.post('/add/athlete', function(req, res) {
 
 app.post('/add/team', function(req, res) {
   console.log("Received:",req.body);
-  let teamName = req.body.Name;
-  let query = `INSERT into Teams (name) VALUES (?)`;
+  var teamName = req.body.Name;
+  var query = `INSERT into Teams (name) VALUES (?)`;
 
   connection.query(query, [teamName]);
 
