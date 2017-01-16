@@ -2,18 +2,6 @@ import React from 'react';
 import {ButtonGroup, DropdownButton, MenuItem, Button, Nav, Navbar, NavItem, NavDropdown} from 'react-bootstrap';
 import {Link} from 'react-router';
 
-
-
-const buttonGroupInstance = (
-  <ButtonGroup>
-    <DropdownButton bsStyle="success" title="Dropdown">
-      <MenuItem key="1">Dropdown link</MenuItem>
-      <MenuItem key="2">Dropdown link</MenuItem>
-    </DropdownButton>
-    <Button bsStyle="info">Middle</Button>
-    <Button bsStyle="info">Right</Button>
-  </ButtonGroup>
-);
 const navbar = (
   <Navbar>
   <Navbar.Header>
@@ -35,7 +23,9 @@ const navbar = (
       </NavItem> */}
 
     <NavDropdown eventKey={3} title="Pages" id="basic-nav-dropdown">
-      <MenuItem eventKey={3.1}>Coaches</MenuItem>
+      <MenuItem eventKey={3.1}>
+        <Link to='/coaches'>Coaches</Link>
+      </MenuItem>
       <MenuItem eventKey={3.2}>Athletes</MenuItem>
       <MenuItem eventKey={3.3}>Teams</MenuItem>
       <MenuItem divider />

@@ -9,56 +9,50 @@ var connection = mysql.createConnection({
   user: 'root',
   password: '1214'
 })
-// app.use(express.static(path.join(__dirname, '../../src')));
 app.use(express.static(path.join(__dirname, '../../dist')));
 app.use(bodyParser.json());
 // Communicate with db
-connection.query('USE races');
-app.get('/100m', function(req, res){
-  connection.query('SELECT * from 100m', function (err, rows, fields) {
-    if (err) throw err
-    res.send(rows)
-  });
+connection.query('USE MeetTracker');
+
+app.get('/results', function(req, res){
+
+  connection.query('select results.performance, results.place, results.points, results.wind, results.heat_number, athletes.athlete, teams.name, events.event, events.units from results inner join athletes on results.result_athlete=athletes.athlete_id inner join teams on results.result_team=teams.team_id inner join events on results.result_event=events.event_id', function(err, results, fields){
+      if(err) throw err
+      console.log(results);
+      res.send(results)
+    });
+});
+
+// app.post('/seed', function(req, res) {
+//   connection.query(query);
+// })
+
+app.post('/add/athlete', function(req, res) {
+  console.log("Received:",req.body);
+  let athleteName = req.body.Athlete;
+  let athleteTeam = req.body.Team;
+  let query = `INSERT into Athletes (athlete, athlete_team) VALUES (?, (SELECT team_id from teams where name = (?) ))`;
+
+  connection.query(query, [athleteName, athleteTeam]);
+
+  res.send('POST for athlete received.');
+  // res.json(req.body);
+});
+
+app.post('/add/team', function(req, res) {
+  console.log("Received:",req.body);
+  let teamName = req.body.Name;
+  let query = `INSERT into Teams (name) VALUES (?)`;
+
+  connection.query(query, [teamName]);
+
+  res.send('POST for athlete received.');
+  // res.json(req.body);
 });
 
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, 'dist/index.html'));
 })
-
-app.post('/seed', function(req, res) {
-  // 'source "C:/Users/jack_/Desktop/Hack.js/Thesis/src/server/db/seed.sql"'
-  // // let seedFile = path.resolve(__dirname, 'db/seed.sql');
-  // let query = "INSERT into 100m (athlete, time, school, points)
-  // values ('Data Soong', 11.02, 'TFA', 10);
-  //
-  // INSERT into 100m (athlete, time, school, points) values ('William T. Riker', 11.25, 'RotS', 8);
-  //
-  // INSERT into 100m (athlete, time, school, points)
-  // values ('Jeordi LaForge', 11.27, 'ESB', 6);
-  //
-  // INSERT into 100m (athlete, time, school, points)
-  // values ('Deeana Troi', 11.40, 'RotJ', 4);
-  //
-  // INSERT into 100m (athlete, time, school, points)
-  // values ('Jean-Luc Picard', 11.82, 'ANH', 3);";
-  connection.query(query);
-})
-
-app.post('/100m', function(req, res) {
-  // connection.query('INSERT into 100m values ')
-  console.log(req.body);
-  let data = req.body;
-  if(data.delete) {
-    connection.query('truncate table 100m');
-  } else {
-  let query = `INSERT into 100m (athlete, time, school, points) VALUES ('${data.athlete}', ${data.time}, '${data.school}', ${data.points});`;
-  connection.query(query);
-  }
-  console.log(data)
-  res.send('POST for 100m received.');
-  // res.json(req.body);
-});
-
 app.listen(1337, function () {
   console.log('Listening on port 1337.');
 });

@@ -9,17 +9,20 @@ export default class ResultsTable extends React.Component {
     super(props);
 
     this.state = {
-      rows: []
+      title: '',
+      rows: ['']
     };
     this.handleGET = this.handleGET.bind(this);
     this.handlePOST = this.handlePOST.bind(this);
-    this.truncate = this.truncate.bind(this);
+    // this.truncate = this.truncate.bind(this);
   }
   handleGET(event) {
     var that = this;
-    fetch('/100m').then((response) => {
+    fetch('/results').then((response) => {
       return response.json();
     }).then((raceResults) => {
+      console.log(raceResults)
+      that.setState({title: "Javelin"});
       that.setState({rows: raceResults});
     }).catch((err) => {
       console.error(err);
@@ -28,55 +31,55 @@ export default class ResultsTable extends React.Component {
   }
 
   handlePOST(event) {
-    let request = new Request('/100m', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        athlete: 'Worf (IR)',
-        time: 12.00,
-        school: 'TPM',
-        points: 3
-      })
-    });
-    console.log("Click!");
-    fetch(request).then((response) => {
-      console.log(response); // not sure why 'POST for 100m received.' not part of response when I res.send it
-    }).catch((err) => {
-      console.log(err);
+    let body = JSON.stringify({
+      athlete: 'Jane',
+      time: 12.00,
+      team: 'Shire',
+      points: 3
     })
-  }
-  seed(event) {
-    let request = new Request('/seed', {
+    let request = {
       method: 'post',
-      headers: {
+      headers: new Headers({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      }
-    });
+      }),
+      body: body
+    };
 
-    fetch(request);
+    fetch('/add/athlete', request).then((response) => {
+      console.log("Responsify---", response); // not sure why 'POST for 100m received.' not part of response when I res.send it
+    }).catch((err) => {console.log(err);})
   }
 
-  truncate(event) {
-    let request = new Request('/100m', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        delete: true
-      })
-    });
-    fetch(request).then((response) => {
-      console.log(response);
-    }).catch((err) => {
-      console.error(err);
-    });
-  }
+  // seed(event) {
+  //   let request = new Request('/seed', {
+  //     method: 'post',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     }
+  //   });
+  //
+  //   fetch(request);
+  // }
+
+  // truncate(event) {
+  //   let request = new Request('/100m', {
+  //     method: 'post',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       delete: true
+  //     })
+  //   });
+  //   fetch(request).then((response) => {
+  //     console.log(response);
+  //   }).catch((err) => {
+  //     console.error(err);
+  //   });
+  // }
 
   render() {
   const buttonGroupInstance = (
@@ -101,23 +104,23 @@ export default class ResultsTable extends React.Component {
     return (
       <div>
         <Navbar />
-        <Button bsStyle="success" onClick={this.handleGET}>GET</Button>
+        <Button bsStyle="default" onClick={this.handleGET}>Results</Button>
         <Button bsStyle="primary" onClick={this.handlePOST}>POST</Button>
-        <Button bsStyle="warning"
-          onClick={this.truncate}>Remove Data</Button>
+        {/* <Button bsStyle="warning"
+          onClick={this.truncate}>Remove Events</Button>
         <Button bsStyle="info"
-          onClick={this.seed}>Seed Data</Button>
-        <h2>100m Dash</h2>
+          onClick={this.seed}>Seed Data</Button> */}
+        <h2>{this.state.title}</h2>
         <Table
           rowHeight={50}
           rowsCount={rows.length}
           width={1000}
-          height={500}
+          height={1000}
           headerHeight={50}
         >
           <Column
             header={<Cell>Place</Cell>}
-            cell={<TextCell data={rows} col={'resultsid'}/>}
+            cell={<TextCell  data={rows} col={'place'}/>}
             width={200}
           />
           <Column
@@ -127,13 +130,13 @@ export default class ResultsTable extends React.Component {
           />
           {/* <MyColumn rowIndex={3}/> */}
           <Column
-            header={<Cell>Time</Cell>}
-            cell={<TextCell data={rows} col={'time'}/>}
+            header={<Cell>Performance</Cell>}
+            cell={<TextCell data={rows} col={'performance'}/>}
             width={200}
           />
           <Column
             header={<Cell>School</Cell>}
-            cell={<TextCell data={rows} col={'school'}/>}
+            cell={<TextCell data={rows} col={'name'}/>}
             width={200}
           />
           <Column
