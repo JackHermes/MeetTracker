@@ -2,15 +2,14 @@ import React from 'react';
 import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
 
 // import Form from './Form.jsx';
-import Navbar from './Navbar.jsx';
+// import Navbar from './Navbar.jsx';
 
 export default class Teams extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
-      Athlete: '',
-      Team: ''
+      Name: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,6 +23,11 @@ export default class Teams extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    // Prevent empty submissions
+    if (!this.state.Name) {
+      alert("Please fill in all fields.");
+      return;
+    }
     let data = JSON.stringify(this.state);
     // send data to server
     let request = {
@@ -35,37 +39,29 @@ export default class Teams extends React.Component {
       body: data
     };
 
-    fetch('/add/athlete', request).then((response) => {
+    fetch('/add/team', request).then((response) => {
       console.log(response);
     }).catch((err) => {console.log(err);})
 
     // clear form fields
-    // this.setState({Athlete: '', Team: ''});
+    this.setState({Name: ''});
   }
 
   render() {
 
     return (
-      <div>
-        <Navbar />
         <form onSubmit={this.handleSubmit}>
           <FormGroup style={{width: '30%', paddingLeft: '5%'}}>
-            <ControlLabel>Enter Athlete Information</ControlLabel>
+            <ControlLabel>Enter Team or School Name</ControlLabel>
             <FormControl
               type='text'
-              placeholder='Athlete'
-              value={this.state.Athlete}
+              placeholder='Name'
+              value={this.state.Name}
               onChange={this.handleChange}
             />
-            <FormControl
-              type='text'
-              placeholder='Team'
-              value={this.state.Team}
-              onChange={this.handleChange}/>
             <Button type="submit">Submit</Button>
           </FormGroup>
         </form>
-      </div>
     )
   }
 }
