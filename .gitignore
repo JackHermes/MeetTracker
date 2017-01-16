@@ -3,8 +3,7 @@
 *.log
 
 # Compiled Dirs
-build/
-dist/
+dist/bundle.js
 
 # Dependency Dirs
 node_modules/
