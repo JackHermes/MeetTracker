@@ -56,6 +56,6 @@ app.post('/add/team', function(req, res) {
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, 'dist/index.html'));
 })
-app.listen(1337, function () {
-  console.log('Listening on port 1337.');
+app.listen(80, function () {
+  console.log('Listening on port 80.');
 });
