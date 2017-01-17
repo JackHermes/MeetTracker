@@ -34,7 +34,7 @@ export default class ResultsTable extends React.Component {
     let body = JSON.stringify({
       athlete: 'Jane',
       time: 12.00,
-      team: 'Shire',
+    //  team: 'Shire',
       points: 3
     })
     let request = {

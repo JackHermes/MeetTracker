@@ -31,9 +31,12 @@ app.post('/add/athlete', function(req, res) {
   console.log("Received:",req.body);
   var athleteName = req.body.Athlete;
   var athleteTeam = req.body.Team;
-  var query = `INSERT into Athletes (athlete, athlete_team) VALUES (?, (SELECT team_id from teams where name = (?) ))`;
-
-  connection.query(query, [athleteName, athleteTeam]);
+  if(!(athleteName && athleteTeam)) {
+    return;
+  }
+  // var query = `INSERT into Athletes (athlete, athlete_team) VALUES (?, (SELECT team_id from teams where name = (?) ))`;
+  //
+  // connection.query(query, [athleteName, athleteTeam]);
 
   res.send('POST for athlete received.');
   // res.json(req.body);

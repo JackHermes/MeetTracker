@@ -5,6 +5,7 @@
 - webpack-dev-server installed globally
 
 - use nodemon for dev
+  -installed globally
 - mysql installed
   - install db schema
   - will need to set up mysql login info
