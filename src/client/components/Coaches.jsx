@@ -1,10 +1,12 @@
 import React from 'react';
 import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
+import {Link} from 'react-router';
 
 // import Form from './Form.jsx';
 import AddAthlete from './AddAthlete.jsx';
 import AddTeam from './AddTeam.jsx';
 import Navbar from './Navbar.jsx';
+import CurrentScore from './CurrentScore.jsx';
 
 export default class Teams extends React.Component {
   constructor(props){
@@ -19,6 +21,9 @@ export default class Teams extends React.Component {
     return (
       <div>
         <Navbar />
+        <CurrentScore>
+          <Link to='/score'>Current Score</Link>
+        </CurrentScore>
         <AddAthlete />
         <AddTeam />
       </div>

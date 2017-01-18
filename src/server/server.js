@@ -23,9 +23,28 @@ app.get('/results', function(req, res){
     });
 });
 
-// app.post('/seed', function(req, res) {
-//   connection.query(query);
-// })
+app.get('/score', function(req, res) {
+  var teams = {};
+  // Gather teams
+  connection.query('select name from teams', function(err, results, fields) {
+    if(err) console.log(err);
+    // console.log('results',  results);
+    results.forEach(function(team) {
+      teams[team.name] = 0;
+    })
+    console.log('Teams', teams);
+  })
+  connection.query('SELECT Results.points, Teams.name FROM Results INNER JOIN Teams on Results.result_team=Teams.team_id WHERE Results.points IS NOT NULL', function(err, results, fields){
+    if(err) console.log(err);
+    console.log('results two', results);
+
+    results.forEach(function(team) {
+      teams[team.name] += team.points;
+    })
+
+    res.send(JSON.stringify(teams))
+  })
+})
 
 app.post('/add/athlete', function(req, res) {
   console.log("Received:",req.body);

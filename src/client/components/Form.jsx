@@ -8,7 +8,7 @@ export default class Form extends React.Component {
 
     // this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  };
   //
   // handleChange(event) {
   //   console.log("Form",event.target)

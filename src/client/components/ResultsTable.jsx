@@ -24,9 +24,7 @@ export default class ResultsTable extends React.Component {
       console.log(raceResults)
       that.setState({title: "Javelin"});
       that.setState({rows: raceResults});
-    }).catch((err) => {
-      console.error(err);
-    })
+    }).catch((err) => {console.error(err);})
     // event.preventDefault();
   }
 
