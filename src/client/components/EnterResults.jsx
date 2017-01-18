@@ -11,10 +11,12 @@ export default class EnterResults extends React.Component {
       Event: '',
       Athlete: '',
       Performance: '',
-      School: ''
+      Team: '',
+      allResults: []
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleAddResult = this.handleAddResult.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -23,19 +25,50 @@ export default class EnterResults extends React.Component {
     console.log('change', event.target.placeholder, this.state)
   }
 
+  handleAddResult(event) {
+    event.preventDefault();
+    let result = {
+      Event: this.state.Event,
+      Athlete: this.state.Athlete,
+      Performance: this.state.Performance,
+      Team: this.state.Team
+    };
+    let allResults = this.state.allResults.slice();
+
+    allResults.push(result);
+    this.setState({Event: '', Athlete: '', Performance: '', Team: ''});
+    this.setState({allResults: allResults});
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    let data = this.state;
-    console.log("EnterResults", this.state);
-    // clear form fields
-    this.setState({Athlete: '', Team: ''});
+    let data = JSON.stringify(this.state.allResults);
+    let request = {
+      method: 'post',
+      headers: new Headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }),
+      body: data
+    };
+
+    fetch('/add/results', request).then((response) => {
+      console.log(response);
+    }).catch((err) => {
+      console.log(err)}
+    )
+    // .then((response) => {
+      console.log("EnterResults", this.state)
+      // clear form fields
+      this.setState({allResults: ''});
+    // })
   }
 
   render() {
     return (
     <div>
       <Navbar />
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleAddResult}>
         <FormGroup
           controlId="formBasicText"
           style={{width: '30%', paddingLeft: '5%'}}>
@@ -79,25 +112,27 @@ export default class EnterResults extends React.Component {
           <Form
             type="text"
             placeholder="Athlete"
-            value={this.state.athlete}
+            value={this.state.Athlete}
             onChange={this.handleChange}
           />
           <Form
             type="text"
             placeholder="Performance"
-            value={this.state.time}
+            value={this.state.Performance}
             onChange={this.handleChange}
           />
           <Form
             type="text"
-            placeholder="School"
-            value={this.state.school}
+            placeholder="Team"
+            value={this.state.Team}
             onChange={this.handleChange}
           />
-          <Button type='submit'>Submit</Button>
-          {/* <Button>Add another result</Button> */}
+          <Button type="submit" onSubmit={this.handleAddResult}>Add Result</Button>
         </FormGroup>
       </form>
+      <FormGroup onSubmit={this.handleSubmit}>
+        <Button bsStyle="primary" onClick={this.handleSubmit}>Submit All Results</Button>
+      </FormGroup>
     </div>
     );
   }

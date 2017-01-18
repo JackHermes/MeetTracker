@@ -49,9 +49,44 @@ app.post('/add/team', function(req, res) {
 
   connection.query(query, [teamName]);
 
-  res.send('POST for athlete received.');
+  res.send('POST for team received.');
   // res.json(req.body);
 });
+
+app.post('/add/results', function(req, res) {
+  console.log('Received Results: ', req.body);
+  var ascending = function(a,b) {return a.Performance-b.Performance;};
+  var descending = function(a,b) {return b.Performance-a.Performance;};
+  var results = req.body;
+
+  results[0].Event === 'Field' ? results.sort(descending) : results.sort(ascending);
+
+  console.log('Results sorted', results);
+  // TODO: check length to stop appropriately, avoiding undefined errs
+  results[0].points = 10;
+  results[1].points = 8;
+  results[2].points = 6;
+  // results[3].points = 5;
+  // results[4].points = 4;
+  // results[5].points = 3;
+  // results[6].points = 2;
+  // results[7].points = 1;
+  console.log('Results with points', results);
+
+  var query = 'insert into Results (result_event, result_athlete, result_team, performance, points, place) values ((select event_id from events where event = ?), (select athlete_id from athletes where athlete = ?), (select team_id from teams where name = ?), ?, ?, ?)';
+  var place = 1;
+
+  results.forEach(function(result) {
+    var event = result.Event;
+    var athlete = result.Athlete;
+    var team = result.Team;
+    var performance = result.Performance;
+    var points = result.Points || null;
+    connection.query(query,[event,athlete,team,performance,points,place], function(err, results, fields) {if (err) console.log(err);})
+    place++;
+  })
+
+})
 
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, 'dist/index.html'));
