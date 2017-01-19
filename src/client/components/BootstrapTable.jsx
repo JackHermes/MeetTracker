@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from 'react-bootstrap';
+import {ProgressBar, Table} from 'react-bootstrap';
 
 import Navbar from './Navbar.jsx';
 
@@ -9,50 +9,35 @@ export default class BootstrapTable extends React.Component {
 
     this.state = {};
   }
+
+
+
   render() {
+    const results = this.props.scores;
+    const teams = Object.keys(results);
+
+    let entries = (item, index) => (
+        <tr> {/*row [index] cells*/}
+          <td>{index + 1}</td>
+          <td>{item}</td>
+          <td>{results[item]}</td>
+        </tr>
+    )
+
+
+
     return (
       <div>
-        <Navbar />
-        <Table responsive>
+        <Table responsive striped condensed hover>
           <thead>
-            <tr>
+            <tr> {/*column headings*/}
               <th>#</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
+              <th>School</th>
+              <th>Points</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
+            {teams.map(entries)}
           </tbody>
         </Table>
       </div>

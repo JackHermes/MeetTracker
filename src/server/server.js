@@ -29,7 +29,7 @@ app.get('/results', function(req, res){
 // TODO: Provide your API key
 app.get('/location', function(req, res) {
   var publicConfig = {
-  key: /*APIKEY*/,
+  key: APIKEY,
   stagger_time:       1000, // for elevationPath
   encode_polylines:   false,
   secure:             true // use https

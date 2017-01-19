@@ -3,7 +3,7 @@ import {ButtonGroup, DropdownButton, MenuItem, Button, Nav, Navbar, NavItem, Nav
 import {Link} from 'react-router';
 
 const navbar = (
-  <Navbar>
+  <Navbar inverse>
   <Navbar.Header>
     <Navbar.Brand>
       <Link to="/">Meet Tracker</Link>
@@ -28,6 +28,9 @@ const navbar = (
       </MenuItem>
       <MenuItem eventKey={3.2}>Athletes</MenuItem>
       <MenuItem eventKey={3.3}>Teams</MenuItem>
+      <MenuItem eventKey={3.4}>
+        <Link to='/bootleg'>bootleg</Link>
+      </MenuItem>
       <MenuItem divider />
       <MenuItem eventKey={3.3}>About Meet Tracker</MenuItem>
     </NavDropdown>

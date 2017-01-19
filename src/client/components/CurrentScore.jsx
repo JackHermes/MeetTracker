@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
 
+import BootstrapTable from './BootstrapTable.jsx';
 import Home from './Home.jsx';
 import Navbar from './Navbar.jsx';
 
@@ -12,6 +13,10 @@ export default class CurrentScore extends React.Component {
 
     this.retrieveScore = this.retrieveScore.bind(this);
   };
+
+  componentDidMount() {
+    this.retrieveScore();
+  }
 
   retrieveScore() {
     console.log("retrieveScore");
@@ -26,8 +31,7 @@ export default class CurrentScore extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.retrieveScore} bsStyle='default'>Current Score</Button>
-        <Home scores={this.state} />
+        <BootstrapTable scores={this.state} />
       </div>
     );
   };

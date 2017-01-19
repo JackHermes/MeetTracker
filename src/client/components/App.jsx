@@ -13,7 +13,7 @@ import ResultsTable from './ResultsTable.jsx';
 ReactDOM.render ((
   <Router history={hashHistory}>
     <Route path='/' component={Home} />
-    {/* <Route path='/bootleg' component={BootstrapTable} /> */}
+    <Route path='/bootleg' component={BootstrapTable} />
     <Route path='/results' component={ResultsTable} />
     <Route path='/enterResults' component={EnterResults} />
     <Route path='/coaches' component={Coaches} />
