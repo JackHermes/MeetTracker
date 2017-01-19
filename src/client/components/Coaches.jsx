@@ -7,6 +7,7 @@ import AddAthlete from './AddAthlete.jsx';
 import AddTeam from './AddTeam.jsx';
 import Navbar from './Navbar.jsx';
 import CurrentScore from './CurrentScore.jsx';
+import Weather from './Weather.jsx';
 
 export default class Teams extends React.Component {
   constructor(props){
@@ -21,6 +22,7 @@ export default class Teams extends React.Component {
     return (
       <div>
         <Navbar />
+        <Weather />
         <CurrentScore>
           <Link to='/score'>Current Score</Link>
         </CurrentScore>

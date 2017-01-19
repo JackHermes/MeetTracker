@@ -3,12 +3,15 @@ var app = express();
 var mysql = require('mysql');
 var path = require('path');
 var bodyParser = require('body-parser');
+var GoogleMapsAPI = require('googlemaps');
+var request = require('request');
 
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '1214'
 })
+
 app.use(express.static(path.join(__dirname, '../../dist')));
 app.use(bodyParser.json());
 // Communicate with db
@@ -22,6 +25,48 @@ app.get('/results', function(req, res){
       res.send(results)
     });
 });
+
+// TODO: Provide your API key
+app.get('/location', function(req, res) {
+  var publicConfig = {
+  key: /*APIKEY*/,
+  stagger_time:       1000, // for elevationPath
+  encode_polylines:   false,
+  secure:             true // use https
+};
+  var gmAPI = new GoogleMapsAPI(publicConfig);
+  var address = {
+    "address":    "121, Curtain Road, EC2A 3AD, London UK",
+    "components": "components=country:GB",
+    "bounds":     "55,-1|54,1",
+    "language":   "en",
+    "region":     "uk"
+  };
+  var latitude, longitude;
+  // var geocoder = new google.maps.Geocoder();
+
+  gmAPI.geocode(address, function(err, result) {
+    latitude = result.results[0].geometry.location.lat;
+    longitude = result.results[0].geometry.location.lng;
+      // send lat/long of location
+      console.log('location result: ', result.results[0].geometry.location);
+      // res.send(JSON.stringify(result.results[0].geometry.location));
+  });
+//api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
+// api.openweathermap.org/data/2.5/forecast?lat=35&lon=139
+  request(`http://api.openweathermap.org/data/2.5/forecast?lat=${lattitude}&lon=${longitude}&APPID=${APIKEY}`, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body)
+    }
+    console.log('body', body);
+  })
+
+});
+
+// app.post('/weather', function(req, res) {
+//   console.log('weather',req.body);
+//   res.send(JSON.stringify('/weather post'))
+// });
 
 app.get('/score', function(req, res) {
   var teams = {};
@@ -45,6 +90,7 @@ app.get('/score', function(req, res) {
     res.send(JSON.stringify(teams))
   })
 })
+
 
 app.post('/add/athlete', function(req, res) {
   console.log("Received:",req.body);
