@@ -71,7 +71,7 @@ app.get('/location', function(req, res) {
 app.get('/score', function(req, res) {
   var teams = {};
   // Gather teams
-  connection.query('select name from teams', function(err, results, fields) {
+  connection.query('select name from Teams', function(err, results, fields) {
     if(err) console.log(err);
     // console.log('results',  results);
     results.forEach(function(team) {
@@ -138,7 +138,7 @@ app.post('/add/results', function(req, res) {
   // results[7].points = 1;
   console.log('Results with points', results);
 
-  var query = 'insert into Results (result_event, result_athlete, result_team, performance, points, place) values ((select event_id from events where event = ?), (select athlete_id from athletes where athlete = ?), (select team_id from teams where name = ?), ?, ?, ?)';
+  var query = 'insert into Results (result_event, result_athlete, result_team, performance, points, place) values ((select event_id from events where event = ?), (select athlete_id from athletes where athlete = ?), (select team_id from Teams where name = ?), ?, ?, ?)';
   var place = 1;
 
   results.forEach(function(result) {

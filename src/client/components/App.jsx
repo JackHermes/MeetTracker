@@ -7,7 +7,6 @@ import CurrentScore from './CurrentScore.jsx';
 import EnterResults from './EnterResults.jsx';
 import Home from './Home.jsx';
 import Navbar from './Navbar.jsx';
-import ResultsTable from './ResultsTable.jsx';
 import Results from './Results.jsx';
 
 ReactDOM.render ((
