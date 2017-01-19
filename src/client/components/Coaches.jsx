@@ -22,7 +22,7 @@ export default class Teams extends React.Component {
     return (
       <div>
         <Navbar />
-        // <Weather />
+        {/*<Weather />*/}
         <CurrentScore>
           <Link to='/score'>Current Score</Link>
         </CurrentScore>
