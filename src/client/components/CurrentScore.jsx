@@ -1,8 +1,7 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
 
-import BootstrapTable from './BootstrapTable.jsx';
-import Home from './Home.jsx';
+import TeamScoreTable from './TeamScoreTable.jsx';
 import Navbar from './Navbar.jsx';
 
 export default class CurrentScore extends React.Component {
@@ -31,7 +30,7 @@ export default class CurrentScore extends React.Component {
   render() {
     return (
       <div>
-        <BootstrapTable scores={this.state} />
+        <TeamScoreTable scores={this.state} />
       </div>
     );
   };

@@ -10,21 +10,17 @@ export default class BootstrapTable extends React.Component {
     this.state = {};
   }
 
-
-
   render() {
     const results = this.props.scores;
     const teams = Object.keys(results);
 
     let entries = (item, index) => (
-        <tr> {/*row [index] cells*/}
+        <tr key={index}> {/*row [index] cells*/}
           <td>{index + 1}</td>
           <td>{item}</td>
           <td>{results[item]}</td>
         </tr>
     )
-
-
 
     return (
       <div>

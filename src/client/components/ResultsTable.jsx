@@ -49,36 +49,6 @@ export default class ResultsTable extends React.Component {
     }).catch((err) => {console.log(err);})
   }
 
-  // seed(event) {
-  //   let request = new Request('/seed', {
-  //     method: 'post',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     }
-  //   });
-  //
-  //   fetch(request);
-  // }
-
-  // truncate(event) {
-  //   let request = new Request('/100m', {
-  //     method: 'post',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       delete: true
-  //     })
-  //   });
-  //   fetch(request).then((response) => {
-  //     console.log(response);
-  //   }).catch((err) => {
-  //     console.error(err);
-  //   });
-  // }
-
   render() {
   const buttonGroupInstance = (
     <ButtonGroup>
