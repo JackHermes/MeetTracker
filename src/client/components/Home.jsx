@@ -1,6 +1,7 @@
 import React from 'react';
 import {Table, Column, Cell} from 'fixed-data-table';
 // import {Table} from 'react-bootstrap';
+import CurrentScore from './CurrentScore.jsx';
 import Navbar from './Navbar.jsx';
 
 export default class ResultsTable extends React.Component {
@@ -33,24 +34,7 @@ render() {
   return (
     <div>
       <Navbar />
-      <h2>Current Score</h2>
-      <Table
-        rowHeight={50}
-        rowsCount={rows.length}
-        width={400}
-        height={350}
-        headerHeight={50}>
-        <Column
-          header={<Cell>School</Cell>}
-          cell={<TextCell data={rows} col={3}/>}
-          width={200}
-        />
-        <Column
-          header={<Cell>Points</Cell>}
-          cell={<TextCell data={rows} col={4}/>}
-          width={200}
-        />
-      </Table>
+      <CurrentScore />
     </div>
   );
   };

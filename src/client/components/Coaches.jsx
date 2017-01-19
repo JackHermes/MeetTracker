@@ -26,8 +26,8 @@ export default class Teams extends React.Component {
         <CurrentScore>
           <Link to='/score'>Current Score</Link>
         </CurrentScore>
-        <AddAthlete />
-        <AddTeam />
+          <AddAthlete />
+          <AddTeam />
       </div>
     )
   }

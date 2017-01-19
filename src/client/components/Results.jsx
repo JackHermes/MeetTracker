@@ -48,6 +48,7 @@ export default class BootstrapTable extends React.Component {
     return (
       <div>
         <Navbar />
+        <h1>Event Results</h1>
         <Table responsive striped condensed hover>
           <thead>
             <tr> {/*column headings*/}

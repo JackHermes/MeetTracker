@@ -30,6 +30,7 @@ export default class CurrentScore extends React.Component {
   render() {
     return (
       <div>
+        <h2>Current Score</h2>
         <TeamScoreTable scores={this.state} />
       </div>
     );
