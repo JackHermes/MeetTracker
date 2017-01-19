@@ -1,6 +1,5 @@
 import React from 'react';
-import {Table, Column, Cell} from 'fixed-data-table';
-// import {Table} from 'react-bootstrap';
+
 import CurrentScore from './CurrentScore.jsx';
 import Navbar from './Navbar.jsx';
 
