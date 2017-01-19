@@ -13,15 +13,10 @@ const navbar = (
     <NavItem eventKey={1}>
       <Link to='/enterResults'>Enter Results</Link>
     </NavItem>
-
-      <NavItem eventKey={2}>
-        <Link to='/results'>View Results</Link>
-      </NavItem>
-
-      {/* <NavItem eventKey={2}>
-        <Link to='/bootleg'>View Boots</Link>
-      </NavItem> */}
-
+    <NavItem eventKey={2}>
+      <Link to='/results'>View Results</Link>
+    </NavItem>
+    
     <NavDropdown eventKey={3} title="Pages" id="basic-nav-dropdown">
       <MenuItem eventKey={3.1}>
         <Link to='/coaches'>Coaches</Link>
