@@ -69,7 +69,7 @@ export default class EnterResults extends React.Component {
       console.log(err)}
     )
       console.log("EnterResults", this.state)
-      this.setState({allResults: ''});
+      this.setState({allResults: []});
   }
 
   render() {

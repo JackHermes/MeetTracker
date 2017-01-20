@@ -106,9 +106,9 @@ app.post('/add/athlete', function(req, res) {
   if(!(athleteName && athleteTeam)) {
     return;
   }
-  // var query = `INSERT into Athletes (athlete, athlete_team) VALUES (?, (SELECT team_id from teams where name = (?) ))`;
-  //
-  // connection.query(query, [athleteName, athleteTeam]);
+  var query = `INSERT into Athletes (athlete, athlete_team) VALUES (?, (SELECT team_id from teams where name = (?) ))`;
+
+  connection.query(query, [athleteName, athleteTeam]);
 
   res.send('POST for athlete received.');
   // res.json(req.body);
