@@ -1,9 +1,9 @@
-# Project Name
+# Meet Tracker
 
-> Pithy project description
+> A Tool for Track and Field
 
 
-   __Created by__: [Jordan](https://github.com/JackHermes)
+   __Created by__: [Jordan M. Scholten](https://github.com/JackHermes)
 
 ## Table of Contents
 
@@ -17,27 +17,23 @@
 
 ## Usage
 
-> Some usage instructions
+>
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- See [package.json](package.json)
 
 ## Development
 
 ### Installing Dependencies
 
-From within the root directory:
+<!-- From within the root directory: -->
 
-```sh
+<!-- ```sh
 sudo npm install -g bower
 npm install
 bower install
-```
+``` -->
 
 ### Roadmap
 
@@ -46,4 +42,4 @@ View the project roadmap [here](https://github.com/JackHermes/MeetTracker/issues
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+<!-- See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines. -->
