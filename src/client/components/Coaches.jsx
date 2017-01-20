@@ -17,17 +17,18 @@ export default class Teams extends React.Component {
 
   }
 
-
   render() {
     return (
       <div>
         <Navbar />
+        <div style={{display: 'block', margin: 'auto'}}>
         {/*<Weather />*/}
-        <CurrentScore>
-          <Link to='/score'>Current Score</Link>
-        </CurrentScore>
-          <AddAthlete />
+          <CurrentScore>
+            <Link to='/score'>Current Score</Link>
+          </CurrentScore>
           <AddTeam />
+          <AddAthlete />
+        </div>
       </div>
     )
   }

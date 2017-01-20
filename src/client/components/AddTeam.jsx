@@ -50,18 +50,28 @@ export default class Teams extends React.Component {
   render() {
 
     return (
+      <div style={{width: '30%', margin: 'auto', display: 'block'}}>
         <form onSubmit={this.handleSubmit}>
-          <FormGroup style={{width: '30%', paddingLeft: '5%'}}>
-            <ControlLabel>Enter Team or School Name</ControlLabel>
+          <FormGroup>
+            <ControlLabel style={{width: '50%', margin: 'auto', display: 'block'}}>
+              Enter Team or School Name
+            </ControlLabel>
             <FormControl
               type='text'
               placeholder='Name'
               value={this.state.Name}
               onChange={this.handleChange}
+              style={{width: '70%', margin: 'auto', display: 'block'}}
             />
-            <Button type="submit">Submit</Button>
+            <Button
+              type="submit"
+              bsStyle="primary"
+              style={{width: '30%', margin: 'auto', display: 'block'}}>
+              Submit
+            </Button>
           </FormGroup>
         </form>
+      </div>
     )
   }
 }

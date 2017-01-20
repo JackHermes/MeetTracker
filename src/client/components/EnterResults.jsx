@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, ButtonGroup, ControlLabel, FormControl, FormGroup, HelpBlock, MenuItem, SplitButton} from 'react-bootstrap';
+import {Button, ButtonGroup, ControlLabel, DropdownButton, FormControl, FormGroup, HelpBlock, MenuItem, SplitButton} from 'react-bootstrap';
 
 import Form from './Form.jsx';
 import Navbar from './Navbar.jsx';
@@ -12,11 +12,13 @@ export default class EnterResults extends React.Component {
       Athlete: '',
       Performance: '',
       Team: '',
-      allResults: []
+      allResults: [],
+      title: 'Select Event'
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleAddResult = this.handleAddResult.bind(this);
+    this.handleAddEvent = this.handleAddEvent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -40,6 +42,15 @@ export default class EnterResults extends React.Component {
     this.setState({allResults: allResults});
   }
 
+  handleAddEvent(eventKey, event) {
+    const eventList = [
+      'DQ', '100m', '100m Hurdles', '110m Hurdles', '200m', '400m', '400m Hurdles', '800m', '1500m', '3000m Steeplechase', '5000m', '10000m', '4x100m', '4x400m',
+      'High Jump', 'Pole Vault', 'Long Jump', 'Triple Jump', 'Shot Put', 'Discus', 'Hammer', 'Javelin'
+    ];
+    this.setState({Event: eventList[eventKey], title: eventList[eventKey]})
+    console.log(eventList[eventKey]);
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     let data = JSON.stringify(this.state.allResults);
@@ -57,58 +68,51 @@ export default class EnterResults extends React.Component {
     }).catch((err) => {
       console.log(err)}
     )
-    // .then((response) => {
       console.log("EnterResults", this.state)
-      // clear form fields
       this.setState({allResults: ''});
-    // })
   }
 
   render() {
     return (
     <div>
       <Navbar />
-      <form onSubmit={this.handleAddResult}>
-        <FormGroup
-          controlId="formBasicText"
-          style={{width: '30%', paddingLeft: '5%'}}>
-          <ControlLabel>Enter Event Results</ControlLabel>
+      <form onSubmit={this.handleAddResult} style={{width: '30%', display: 'block', margin: 'auto'}}>
+        <h2 style={{width: '60%', display: 'block', margin: 'auto'}}>Enter Event Results</h2>
+        <FormGroup controlId="formBasicText" style={{width: '60%', display: 'block', margin: 'auto'}}>
           <ButtonGroup>
-
-          <SplitButton title="Track" pullRight id="track-events-dropdown" onSelect={function(eventKey, event){console.log("Click", eventKey, event.target);}}>
-            <MenuItem eventKey="1">100m</MenuItem>
-            <MenuItem eventKey="1">100m Hurdles</MenuItem>
-            <MenuItem eventKey="2">110m Hurdles</MenuItem>
-            <MenuItem eventKey="2">200m</MenuItem>
-            <MenuItem eventKey="2">400m</MenuItem>
-            <MenuItem eventKey="2">400m Hurdles</MenuItem>
-            <MenuItem eventKey="2">800m</MenuItem>
-            <MenuItem eventKey="2">1500m</MenuItem>
-            <MenuItem eventKey="2">3000m Steeplechase</MenuItem>
-            <MenuItem eventKey="2">5000m</MenuItem>
-            <MenuItem eventKey="2">1000m</MenuItem>
-            <MenuItem eventKey="2">4x100m</MenuItem>
-            <MenuItem eventKey="2">4x400m</MenuItem>
-          </SplitButton>
-
-          <SplitButton title="Field" pullRight id="field-events-dropdown" onSelect={function(eventKey, event){console.log("Click", eventKey, event.target);}}>
-            <MenuItem eventKey="3">High Jump</MenuItem>
-            <MenuItem eventKey="3">Pole Vault</MenuItem>
-            <MenuItem eventKey="3">Long Jump</MenuItem>
-            <MenuItem eventKey="3">Triple Jump</MenuItem>
-            <MenuItem eventKey="3">Shot Put</MenuItem>
-            <MenuItem eventKey="3">Discus</MenuItem>
-            <MenuItem eventKey="3">Hammer</MenuItem>
-            <MenuItem eventKey="3">Javelin</MenuItem>
-          </SplitButton>
+          <DropdownButton
+            noCaret
+            title={this.state.title}
+            pullRight id="events-dropdown"
+            onSelect={this.handleAddEvent}
+            style={{width: '265%', margin: 'auto'}}>
+            <MenuItem header>Track</MenuItem>
+              <MenuItem eventKey="1">100m</MenuItem>
+              <MenuItem eventKey="2">100m Hurdles</MenuItem>
+              <MenuItem eventKey="3">110m Hurdles</MenuItem>
+              <MenuItem eventKey="4">200m</MenuItem>
+              <MenuItem eventKey="5">400m</MenuItem>
+              <MenuItem eventKey="6">400m Hurdles</MenuItem>
+              <MenuItem eventKey="7">800m</MenuItem>
+              <MenuItem eventKey="8">1500m</MenuItem>
+              <MenuItem eventKey="9">3000m Steeplechase</MenuItem>
+              <MenuItem eventKey="10">5000m</MenuItem>
+              <MenuItem eventKey="11">1000m</MenuItem>
+              <MenuItem eventKey="12">4x100m</MenuItem>
+              <MenuItem eventKey="13">4x400m</MenuItem>
+            <MenuItem divider />
+            <MenuItem header>Field</MenuItem>
+              <MenuItem eventKey="14">High Jump</MenuItem>
+              <MenuItem eventKey="15">Pole Vault</MenuItem>
+              <MenuItem eventKey="16">Long Jump</MenuItem>
+              <MenuItem eventKey="17">Triple Jump</MenuItem>
+              <MenuItem eventKey="18">Shot Put</MenuItem>
+              <MenuItem eventKey="19">Discus</MenuItem>
+              <MenuItem eventKey="20">Hammer</MenuItem>
+              <MenuItem eventKey="21">Javelin</MenuItem>
+          </DropdownButton>
         </ButtonGroup>
 
-          <Form
-            type="text"
-            placeholder="Event"
-            value={this.state.Event}
-            onChange={this.handleChange}
-          />
           <Form
             type="text"
             placeholder="Athlete"
@@ -127,11 +131,15 @@ export default class EnterResults extends React.Component {
             value={this.state.Team}
             onChange={this.handleChange}
           />
-          <Button type="submit" onSubmit={this.handleAddResult}>Add Result</Button>
+          <Button type="submit" onSubmit={this.handleAddResult} style={{width: '70%', display: 'block', margin: 'auto'}}>
+            Add Result
+          </Button>
         </FormGroup>
       </form>
-      <FormGroup onSubmit={this.handleSubmit}>
-        <Button bsStyle="primary" onClick={this.handleSubmit}>Submit All Results</Button>
+      <FormGroup onSubmit={this.handleSubmit} style={{display: 'block', margin: 'auto'}}>
+        <Button bsStyle="primary" onClick={this.handleSubmit} style={{width: '15%',display: 'block', margin: 'auto'}}>
+          Submit All Results
+        </Button>
       </FormGroup>
     </div>
     );
