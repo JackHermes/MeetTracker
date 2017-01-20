@@ -14,6 +14,6 @@ export default () => (
       <Image src="http://docs.whitesourcesoftware.com/download/attachments/17989744/github_logo.png?version=1&modificationDate=1463491374000" />
     </a>
     <a href="https://github.com/JackHermes"><Image src="../profile" circle style={{float: 'right', marginRight: '2%'}}/></a>
-    <h3 style={{float: 'right'}}><b>Made by this guy:</b></h3>
+    <h3 style={{float: 'right'}}><b>Made by him:</b></h3>
   </div>
 );

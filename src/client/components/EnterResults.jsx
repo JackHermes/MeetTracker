@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, ButtonGroup, ControlLabel, DropdownButton, FormControl, FormGroup, HelpBlock, MenuItem, SplitButton} from 'react-bootstrap';
+import {Button, ButtonGroup, ControlLabel, DropdownButton, FormControl, FormGroup, HelpBlock, ListGroup, ListGroupItem, MenuItem, SplitButton} from 'react-bootstrap';
 
 import Form from './Form.jsx';
 import Navbar from './Navbar.jsx';
@@ -38,7 +38,7 @@ export default class EnterResults extends React.Component {
     let allResults = this.state.allResults.slice();
 
     allResults.push(result);
-    this.setState({Event: '', Athlete: '', Performance: '', Team: ''});
+    this.setState({Athlete: '', Performance: '', Team: ''});
     this.setState({allResults: allResults});
   }
 
@@ -73,6 +73,11 @@ export default class EnterResults extends React.Component {
   }
 
   render() {
+
+    let listEntries = (item, index) => (
+      <ListGroupItem header={`${item.Athlete}`}>{`${item.Event}, ${item.Performance}, ${item.Team}`}</ListGroupItem>
+    )
+
     return (
     <div>
       <Navbar />
@@ -141,6 +146,9 @@ export default class EnterResults extends React.Component {
           Submit All Results
         </Button>
       </FormGroup>
+      <ListGroup style={{width: '30%', display: 'block', margin: 'auto'}}>
+        {this.state.allResults.map(listEntries)}
+      </ListGroup>
     </div>
     );
   }
