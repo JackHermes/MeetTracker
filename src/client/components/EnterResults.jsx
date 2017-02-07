@@ -102,7 +102,7 @@ export default class EnterResults extends React.Component {
               <MenuItem eventKey="8">1500m</MenuItem>
               <MenuItem eventKey="9">3000m Steeplechase</MenuItem>
               <MenuItem eventKey="10">5000m</MenuItem>
-              <MenuItem eventKey="11">1000m</MenuItem>
+              <MenuItem eventKey="11">10000m</MenuItem>
               <MenuItem eventKey="12">4x100m</MenuItem>
               <MenuItem eventKey="13">4x400m</MenuItem>
             <MenuItem divider />

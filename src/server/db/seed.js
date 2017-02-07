@@ -50,14 +50,19 @@ connection.query('insert into Athletes (athlete, athlete_team) values (?, (selec
 })
 
 // Event entry
-connection.query('insert into Events (event, units) values (?,?)',['Javelin', 'ft'], function(err, results, fields) {
-  if (err) throw err
+var trackEvents = ['100m', '100m Hurdles', '110m Hurdles', '200m', '400m', '400m Hurdles', '800m', '1500m', '3000m Steeplechase', '5000m', '10000m', '4x100m', '4x400m'];
+var fieldEvents = ['High Jump', 'Pole Vault', 'Long Jump', 'Triple Jump', 'Shot Put', 'Discus', 'Hammer', 'Javelin'];
+// add track events
+trackEvents.forEach(function(event) {
+  connection.query('insert into Events (event, units) values (?,?)',[event, 's'], function(err, results, fields) {
+    if (err) throw err
+  });
 });
-connection.query('insert into Events (event, units) values (?,?)',['100m', 's'], function(err, results, fields) {
-  if (err) throw err
-});
-connection.query('insert into Events (event, units) values (?,?)',['200m', 's'], function(err, results, fields) {
-  if (err) throw err
+// add field events
+fieldEvents.forEach(function(event) {
+  connection.query('insert into Events (event, units) values (?,?)',[event, 'ft'], function(err, results, fields) {
+    if (err) throw err
+  });
 });
  // insert into results (performance, place, points, result_athlete, result_team, result_event) values (23,1,10,(select athlete_id from Athletes where name = "Gandalf"), (select team_id from Teams where name = "Valinor"), (select event_id from Events where name = "Javelin"))
 
