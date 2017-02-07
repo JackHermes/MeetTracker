@@ -7,15 +7,14 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Roadmap](#Roadmap)
+    1. [Creating the Database](#creating-the-database)
+    1. [Starting the App](#starting-the-app)
+    1. [Roadmap](#roadmap)
+1. [Usage Notes](#usage-notes)
 
-## Usage
-
->
 
 ## Requirements
 Be sure you have Node ^6.9
@@ -25,7 +24,7 @@ Global installs:
 - karma cli
 - grunt cli
 - mysql
-- nodemon (if you like easier development)
+- nodemon
 - webpack-dev-server
 
 Installed with ``npm install``:
@@ -60,7 +59,7 @@ Installed with ``npm install``:
 
 ## Development
 
-You'll need to adjust the mysql password and user information in [server.js](./server/server.js) to match your system's configuration.
+You'll need to adjust the mysql password and user information in [server.js](./src/server/server.js) to match your system's configuration.
 
 ### Installing Dependencies
 
@@ -71,7 +70,26 @@ sudo npm install -g eslint (/karma-cli/grunt-cli/mysql/nodemon/etc)
 npm install
 ```
 
+### Creating the Database
+
+Log in to MySQL with ``mysql -u USERNAME -p`` followed by entering your password.
+
+Once in the MySQL cli, enter ``source /ABSOLUTE/PATH/TO/src/server/db/schema.sql`` to create the database. Then from the project's root: ``node src/server/db/seed.js`` to seed the database with data. This also adds all event names to the appropriate table.
+
+### Starting the App
+Create a bundled file and start the server on [localhost](localhost:80):
+
+```sh
+webpack
+nodemon src/server/server.js
+```
+
+Use ``webpack -w`` to watch for changes to bundle.
+
 ### Roadmap
 
 View the project roadmap [here](https://github.com/JackHermes/MeetTracker/issues)
 
+## Usage Notes
+
+> When adding event results, do be sure the team and athlete both exist first, otherwise the result won't be added.
