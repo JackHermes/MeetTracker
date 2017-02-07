@@ -153,7 +153,7 @@ app.post('/add/results', function(req, res) {
     var athlete = result.Athlete;
     var team = result.Team;
     var performance = result.Performance;
-    var points = result.Points || null;
+    var points = result.points || null;
     connection.query(query,[event,athlete,team,performance,points,place], function(err, results, fields) {if (err) console.log(err);})
     place++;
   })
