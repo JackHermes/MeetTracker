@@ -20,7 +20,7 @@ connection.query('USE MeetTracker');
 app.get('/results', function(req, res){
 
   connection.query('select Results.performance, Results.place, Results.points, Results.wind, Results.heat_number, Athletes.athlete, Teams.name, Events.event, Events.units from Results inner join Athletes on Results.result_athlete=Athletes.athlete_id inner join Teams on Results.result_team=Teams.team_id inner join Events on Results.result_event=Events.event_id', function(err, results, fields){
-      if(err) throw err
+      if(err) console.log(err);
       console.log(results);
       res.send(results)
     });
