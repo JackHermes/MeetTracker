@@ -3,8 +3,8 @@ var app = express();
 var mysql = require('mysql');
 var path = require('path');
 var bodyParser = require('body-parser');
-var GoogleMapsAPI = require('googlemaps');
-var request = require('request');
+// var GoogleMapsAPI = require('googlemaps');
+// var request = require('request');
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -12,12 +12,12 @@ var connection = mysql.createConnection({
   password: '1214'
 })
 
-app.use(express.static(path.join(__dirname, '../../dist')));
+app.use(express.static(path.join(__dirname, '../../dist/')));
 app.use(bodyParser.json());
 // Communicate with db
 connection.query('USE MeetTracker');
 
-app.get('/results', function(req, res){
+app.get('/MeetTracker/results', function(req, res){
 
   connection.query('select Results.performance, Results.place, Results.points, Results.wind, Results.heat_number, Athletes.athlete, Teams.name, Events.event, Events.units from Results inner join Athletes on Results.result_athlete=Athletes.athlete_id inner join Teams on Results.result_team=Teams.team_id inner join Events on Results.result_event=Events.event_id', function(err, results, fields){
       if(err) console.log(err);
@@ -75,7 +75,7 @@ app.get('/profile', function(req, res) {
 //   res.send(JSON.stringify('/weather post'))
 // });
 
-app.get('/score', function(req, res) {
+app.get('/MeetTracker/score', function(req, res) {
   var teams = {};
   // Gather teams
   connection.query('select name from Teams', function(err, results, fields) {
@@ -99,7 +99,7 @@ app.get('/score', function(req, res) {
 })
 
 
-app.post('/add/athlete', function(req, res) {
+app.post('/MeetTracker/add/athlete', function(req, res) {
   console.log("Received:",req.body);
   var athleteName = req.body.Athlete;
   var athleteTeam = req.body.Team;
@@ -114,7 +114,7 @@ app.post('/add/athlete', function(req, res) {
   // res.json(req.body);
 });
 
-app.post('/add/team', function(req, res) {
+app.post('/MeetTracker/add/team', function(req, res) {
   console.log("Received:",req.body);
   var teamName = req.body.Name;
   var query = `INSERT into Teams (name) VALUES (?)`;
@@ -125,7 +125,7 @@ app.post('/add/team', function(req, res) {
   // res.json(req.body);
 });
 
-app.post('/add/results', function(req, res) {
+app.post('/MeetTracker/add/results', function(req, res) {
   console.log('Received Results: ', req.body);
   var ascending = function(a,b) {return a.Performance-b.Performance;};
   var descending = function(a,b) {return b.Performance-a.Performance;};
@@ -160,9 +160,9 @@ app.post('/add/results', function(req, res) {
 
 })
 
-app.get('*', function(req, res) {
-  res.sendFile(path.resolve(__dirname, 'dist/index.html'));
-})
+// app.get('/MeetTracker/*', function(req, res) {
+//   res.sendFile(path.resolve(__dirname, '../../dist/index.html'));
+// })
 app.listen(80, function () {
   console.log('Listening on port 80.');
 });

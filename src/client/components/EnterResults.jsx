@@ -63,7 +63,7 @@ export default class EnterResults extends React.Component {
       body: data
     };
 
-    fetch('/add/results', request).then((response) => {
+    fetch('/MeetTracker/add/results', request).then((response) => {
       console.log(response);
     }).catch((err) => {
       console.log(err)}

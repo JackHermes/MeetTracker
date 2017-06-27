@@ -39,7 +39,7 @@ export default class Teams extends React.Component {
       body: data
     };
 
-    fetch('/add/team', request).then((response) => {
+    fetch('/MeetTracker/add/team', request).then((response) => {
       console.log(response);
     }).catch((err) => {console.log(err);})
 

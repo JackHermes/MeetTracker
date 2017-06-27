@@ -6,26 +6,26 @@ export default () => (
     <Navbar inverse>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to="/">Meet Tracker</Link>
+          <Link to="/MeetTracker/">Meet Tracker</Link>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
           <NavItem eventKey={1}>
-            <Link to='/add/eventResults'>Enter Results</Link>
+            <Link to='/MeetTracker/add/eventResults'>Enter Results</Link>
           </NavItem>
           <NavItem eventKey={2}>
-            <Link to='/results'>View Results</Link>
+            <Link to='/MeetTracker/results'>View Results</Link>
           </NavItem>
             <MenuItem eventKey={3}>
-              <Link to='/coaches'>Coaches</Link>
+              <Link to='/MeetTracker/coaches'>Coaches</Link>
             </MenuItem>
           </Nav>
 
           <Nav pullRight>
             <MenuItem eventKey={6}>
-              <Link to='/about'>About Meet Tracker</Link>
+              <Link to='/MeetTracker/about'>About Meet Tracker</Link>
             </MenuItem>
         </Nav>
       </Navbar.Collapse>

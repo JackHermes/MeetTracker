@@ -18,7 +18,7 @@ export default class CurrentScore extends React.Component {
 
   retrieveScore() {
     console.log("retrieveScore");
-    fetch('/score').then((response) => {
+    fetch('/MeetTracker/score').then((response) => {
       return response.json();
     }).then((currentScore) => {
       console.log(currentScore);

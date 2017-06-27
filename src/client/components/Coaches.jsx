@@ -24,7 +24,7 @@ export default class Teams extends React.Component {
         <div style={{display: 'block', margin: 'auto'}}>
         {/*<Weather />*/}
           <CurrentScore>
-            <Link to='/score'>Current Score</Link>
+            <Link to='/MeetTracker/score'>Current Score</Link>
           </CurrentScore>
           <AddTeam />
           <AddAthlete />

@@ -12,11 +12,11 @@ import Results from './Results.jsx';
 
 ReactDOM.render ((
   <Router history={hashHistory}>
-    <Route path='/' component={Home} />
-    <Route path='/about' component={About} />
-    <Route path='/results' component={Results} />
-    <Route path='/add/eventResults' component={EnterResults} />
-    <Route path='/coaches' component={Coaches} />
-    <Route path='/score' component={CurrentScore} />
+    <Route path='/MeetTracker/' component={Home} />
+    <Route path='/MeetTracker/about' component={About} />
+    <Route path='/MeetTracker/results' component={Results} />
+    <Route path='/MeetTracker/add/eventResults' component={EnterResults} />
+    <Route path='/MeetTracker/coaches' component={Coaches} />
+    <Route path='/MeetTracker/score' component={CurrentScore} />
   </Router>
 ), document.getElementById('app'));

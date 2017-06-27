@@ -26,7 +26,7 @@ export default class BootstrapTable extends React.Component {
 
   handleGET(event) {
     var that = this;
-    fetch('/results').then((response) => {
+    fetch('MeetTracker/results').then((response) => {
       return response.json();
     }).then((raceResults) => {
       console.log(raceResults)
