@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, Link, hashHistory} from 'react-router';
+import {Router, Route, Link, browserHistory} from 'react-router';
 
 import About from './About.jsx';
 import Coaches from './Coaches.jsx';
@@ -11,7 +11,7 @@ import Navbar from './Navbar.jsx';
 import Results from './Results.jsx';
 
 ReactDOM.render ((
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path='/MeetTracker/' component={Home} />
     <Route path='/MeetTracker/about' component={About} />
     <Route path='/MeetTracker/results' component={Results} />

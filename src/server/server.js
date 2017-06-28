@@ -160,9 +160,9 @@ app.post('/MeetTracker/add/results', function(req, res) {
 
 })
 
-// app.get('/MeetTracker/*', function(req, res) {
-//   res.sendFile(path.resolve(__dirname, '../../dist/index.html'));
-// })
+app.get('/MeetTracker/*', function(req, res) {
+  res.sendFile(path.resolve(__dirname, '../../dist/index.html'));
+})
 app.listen(80, function () {
   console.log('Listening on port 80.');
 });
